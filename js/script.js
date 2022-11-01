@@ -1,321 +1,281 @@
-const customer = {
-	firstName: "Jacob",
-	lastName: "Mercer",
-	getFullName() {
-	  return `${this.firstName} ${this.lastName}`;
-	},
-  };
+// const parent = {
+// 	name: "Stacey",
+// 	surname: "Moore",
+// 	age: 54,
+// 	heritage: "Irish",
+//   };
+//   const child = {};
+
+//   child.name = "Jason";
+//   child.age = 27;
   
-  function makeMessage(callback) {
-	// callback() это вызов метода getFullName без объекта
-	console.log(`Обрабатываем заявку от ${callback()}.`);
+//   class Car {
+//   constructor(brand, model, price){
+// 	this.brand=brand;
+// 	this.model=model;
+// 	this.price=price;
+//   }}
+
+// const bmw = new Car('BMW', 535, 35000)
+
+// console.log(bmw);
+
+// function Person(first, last, age, gender, interests) {
+// 	this.name = {
+// 	  first : first,
+// 	  last: last
+// 	};
+// 	this.age = age;
+// 	this.gender = gender;
+// 	this.interests = interests;
+// 	this.bio = function() {
+// 	  alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+// 	};
+// 	this.greeting = function() {
+// 	  alert('Hi! I\'m ' + this.name.first + '.');
+// 	};
+// };
+  
+// let person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+
+// console.log(person1.bio());
+
+// class User {
+// 	constructor({ name, email }) {
+// 	  this.name = name;
+// 	  this.email = email;
+// 	}
+// 	getEmail() {
+// 	  return this.email;
+// 	}
+// 	changeEmail(newEmail) {
+// 	  this.email = newEmail;
+// 	}
+//   }
+
+// class Car {
+// 	constructor({ brand, model, price }) {
+// 		this.brand = brand;
+// 		this.model = model;
+// 		this.price = price;
+// 	}
+// 	  getPrice() {
+// 			return this.price;
+// 		}
+		
+// 	  changePrice(newPrice) {
+// 			this.price = newPrice;
+// 	  }
+// 	}
+
+// class Storage {
+// 	constructor(items) {
+// 		this.items = items
+// 	}
+  
+// 	getItems() {
+// 		return this.items;
+// 	}
+// 	addItem(newItem) {
+// 		this.items.push(newItem);
+// 	}
+// 	removeItem(itemToRemove) {
+// 		this.items.pop(itemToRemove)
+// 	};
+// }
+  
+//   const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
+//   console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
+//   storage.addItem("Droid");
+//   console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
+//   storage.removeItem("Prolonger");
+//   console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
+
+
+// class Car {
+// 	constructor({ brand, model, price }) {
+// 		this.#brand = brand;
+// 		this.model = model;
+// 		this.price = price;
+// 	}
+  
+// 	getBrand() {
+// 		return this.#brand
+// 	}
+  
+// 	changeBrand(newBrand) {
+// 		this.#brand = newBrand
+// 	}
+// }
+
+
+class Car {
+	static #MAX_PRICE = 50000;
+	constructor({ price }) {
+		this.price = price;
+	}
+	static checkPrice(price) {
+	  if (Car.price > Car.#MAX_PRICE) {
+	   return "Error! Price exceeds the maximum"
+	  } else {return "Success! Price is within acceptable limits"}
+	}
   }
   
-  makeMessage(customer.getFullName); // Будет ошибка при вызове функции
+  const audi = new Car({ price: 36000 });
+  const bmw = new Car({ price: 64000 });
+  
+  console.log(Car.checkPrice(audi.price)); 
+  console.log(Car.checkPrice(bmw.price));
 
 
-// const users=[
-// 	{
-// 	  name: "Moore Hensley",
-// 	  email: "moorehensley@indexia.com",
-// 	  eyeColor: "blue",
-// 	  friends: ["Sharron Pace"],
-// 	  isActive: false,
-// 	  balance: 2811,
-// 	  gender: "male"
-// 	},
-// 	{
-// 	  name: "Sharlene Bush",
-// 	  email: "sharlenebush@tubesys.com",
-// 	  eyeColor: "blue",
-// 	  friends: ["Briana Decker", "Sharron Pace"],
-// 	  isActive: true,
-// 	  balance: 3821,
-// 	  gender: "female"
-// 	},
-// 	{
-// 	  name: "Ross Vazquez",
-// 	  email: "rossvazquez@xinware.com",
-// 	  eyeColor: "green",
-// 	  friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
-// 	  isActive: false,
-// 	  balance: 3793,
-// 	  gender: "male"
-// 	},
-// 	{
-// 	  name: "Elma Head",
-// 	  email: "elmahead@omatom.com",
-// 	  eyeColor: "green",
-// 	  friends: ["Goldie Gentry", "Aisha Tran"],
-// 	  isActive: true,
-// 	  balance: 2278,
-// 	  gender: "female"
-// 	},
-// 	{
-// 	  name: "Carey Barr",
-// 	  email: "careybarr@nurali.com",
-// 	  eyeColor: "blue",
-// 	  friends: ["Jordan Sampson", "Eddie Strong", "Adrian Cross"],
-// 	  isActive: true,
-// 	  balance: 3951,
-// 	  gender: "male"
-// 	},
-// 	{
-// 	  name: "Blackburn Dotson",
-// 	  email: "blackburndotson@furnigeer.com",
-// 	  eyeColor: "brown",
-// 	  friends: ["Jacklyn Lucas", "Linda Chapman", "Adrian Cross", "Solomon Fokes"],
-// 	  isActive: false,
-// 	  balance: 1498,
-// 	  gender: "male"
-// 	},
-// 	{
-// 	  name: "Sheree Anthony",
-// 	  email: "shereeanthony@kog.com",
-// 	  eyeColor: "brown",
-// 	  friends: ["Goldie Gentry", "Briana Decker"],
-// 	  isActive: true,
-// 	  balance: 2764,
-// 	  gender: "female"
+// class Car {
+// 	#price;
+// 	static MAX_PRICE = 50000;
+  
+// 	constructor({ price }) {
+// 	  this.#price = price;
 // 	}
-//   ]
-
-
-//   const getTotalBalanceByGender = (users, gender) => {
-// 	return [...users]
-//    .filter(user=>user.gender===gender)
-//    .reduce((totalBalance, user)=>{return totalBalance+user.balance},0)
-//  };
-
-//  console.log(getTotalBalanceByGender(users, "female"));
-
-// assert.strictEqual(hero(10, 5), true);
-//     assert.strictEqual(hero(7, 4), false);
-//     assert.strictEqual(hero(4, 5), false);
-//     assert.strictEqual(hero(100, 40), true);
-//     assert.strictEqual(hero(1500, 751), false);
-//     assert.strictEqual(hero(0, 1), false);
-
-  // Ожидается
-// console.log(
-// 	calcBMI({
-// 		weight: "88,3",
-// 		height: "1.75",
-// 	})
-// );
-// console.log(
-// 	calcBMI({
-// 		weight: "68,3",
-// 		height: "1.65",
-// 	})
-// );
-// console.log(
-// 	calcBMI({
-// 		weight: "118,3",
-// 		height: "1.95",
-// 	})
-// );
-
-// =>
-// Example 2 - Деструктуризация
-// Перепиши функцию так, чтобы она принимала один объект параметров,
-// вместо набора независимых аргументов.
-
-// printContactsInfo = (name, tel) => {
-// 	const nameList = name.split(',');
-// 	const telList = tel.split(',');
-// 	for (let i = 0; i < nameList.length; i+=1) {
-// 		console.log(`${nameList[i]}: ${telList}`);
-		
+  
+// 	get price() {
+// 	  return this.#price;
 // 	}
-
-// }
-
-// function printContactsInfo({ names, phones }) {
-// 	const nameList = names.split(',');
-// 	const phoneList = phones.split(',');
-// 	for (let i = 0; i < nameList.length; i += 1) {
-// 		console.log(`${nameList[i]}: ${phoneList[i]}`);
+  
+// 	set price(newPrice) {
+// 	  if (this.#price <= newPrice) {
+// 	 return this.#price = newPrice;
+// 	  }
 // 	}
-// }
+//   }
+  
+//   const audi = new Car({ price: 35000 });
+//   console.log(audi.price); 
+  
+//   audi.price = 49000;
+//   console.log(audi.price); 
+  
+//   audi.price = 51000;
+//   console.log(audi.price); 
 
-// Было
-// printContactsInfo(
-// 	"Jacob,William,Solomon,Artemis",
-// 	"89001234567,89001112233,890055566377,890055566300"
-// );
-
-// Ожидается
-// printContactsInfo({
-// 	names: "Jacob,William,Solomon,Artemis",
-// 	phones: "89001234567,89001112233,890055566377,890055566300",
-// });
-
-// =>
-// Example 3 - Глубокая деструктуризация
-// Перепиши функцию так, чтобы она принимала один объект параметров,
-// вместо набора независимых аргументов.
-
-// function getBotReport({ companyName, bots: { repair, defence } }) {
-// 	return `${companyName} has ${repair + defence} bots in stock`;
-// }
-
-// // Было
-// console.log(getBotReport("Cyberdyne Systems", 150, 50));
-
-// Ожидается
-// console.log(
-// 	getBotReport({
-// 		companyName: "Cyberdyne Systems",
-// 		bots: {
-// 			repair: 150,
-// 			defence: 50,
-// 		},
-// 	})
-// ); // "Cyberdyne Systems has 200 bots in stock"
-
-// =>
-// Example 4 - Деструктуризация
-// Перепиши функцию так, чтобы она принимала объект параметров
-// со свойствами companyName и stock
-// и выводила репорт о количестве товаров на складе любой компании.
-
-// function getStockReport({ companyName, stock }) {
-// 	let sum = 0;
-
-// 	for (const count of Object.values(stock)) {
-// 		sum += count;
+// class User {
+// 	#email;
+  
+// 	constructor({ name, email }) {
+// 	  this.name = name;
+// 	  this.#email = email;
 // 	}
+// 	// get email() {
+// 	//   return this.#email;
+// 	// }
+// 	// set email(newEmail) {
+// 	//   this.#email = newEmail;
+// 	// }
+//   }
 
-// 	return `${companyName} has ${sum} items in stock`;
-// }
+//   const mango = new User({ name: "Манго", email: "mango@mail.com" });
+//   console.log(mango.email);
+//   mango.email = "mango@supermail.com";
+//   console.log(mango.email);
 
-// const info = {
-// 	companyName: "Cyberdyne Systems",
-// 	stock: {
-// 		repairBots: 150,
-// 		defenceBots: 50,
-// 		hats: 200,
-// 	},
-// };
 
-// console.log(getStockReport(info)); // "Cyberdyne Systems has 200 items in stock"
+// class Storage {
+//   #items
+// 	constructor(items) {
+// 	  this.#items = items;
+// 	}
+  
+// 	getItems() {
+// 	  return this.#items;
+// 	}
+  
+// 	addItem(newItem) {
+// 	  this.#items.push(newItem);
+// 	}
+  
+// 	removeItem(itemToRemove) {
+// 	  this.#items = this.#items.filter(item => item !== itemToRemove);
+// 	}
+//   }
+//   const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
+//   console.log(storage.getItems()); 
+//   storage.addItem("Droid");
+//   console.log(storage.getItems()); 
+//   storage.removeItem("Prolonger");
+//   console.log(storage.getItems());
 
-// console.log(
-// 	getStockReport({
-// 		companyName: "Belacci",
-// 		stock: {
-// 			shoes: 20,
-// 			skirts: 10,
-// 			hats: 5,
-// 		},
-// 	})
-// ); // "Belacci has 35 item in stock"
 
-// =>
-// Example 5 - Операция spread
-// Дополни функцию createContact(partialContact) так,
-// чтобы она возвращала новый объект контакта
-// с добавленными свойствами id и createdAt,
-// а также list со значением "default" если в partialContact нет такого свойства.
-
-// const o1 = {
-// 	name: "Oleh",
-// };
-
-// console.log({
-// 	...o1,
-//     age: 25
-// });
-
-// function createContact(partialContact) {
-// 	return {
-// 		list: "default",
-// 		...partialContact,
-// 		id: generateId(),
-// 		createdAt: Date.now(),
+// class StringBuilder {
+// 	constructor (initialValue){
+// 	  this.value = initialValue;
 // 	};
-// }
-
-// console.log(
-// 	createContact({
-// 		name: "Mango",
-// 		email: "mango@mail.com",
-// 		list: "friends",
-// 	})
-// );
-// console.log(
-// 	createContact({
-// 		name: "Poly",
-// 		email: "poly@hotmail.com",
-// 	})
-// );
-
-// function generateId() {
-// 	return "_" + Math.random().toString(36).substr(2, 9);
-// }
-
-// =>
-// Example 6 - Операция rest
-// Напиши функцию transformUsername(user) так,
-// чтобы она возвращала новый обьект со свойством fullName, вместо firstName и lastName.
-
-// function transformUsername({ firstName, lastName, ...rest }) {
-// 	return {
-// 		...rest,
-// 		fullName: `${firstName} ${lastName}`,
+// 	getValue() {
+// 	  return this.value;
 // 	};
-// }
+// 	padEnd(str) {
+// 	  this.value = this.value + str
+// 	};
+//   padStart(str) {
+// 	this.value = str + this.value
+//   };
+// 	padBoth(str) {
+// 	 this.value = str + this.value + str
+// 	}
+//   }
+	
 
-// console.log(
-// 	transformUsername({
-// 		id: 1,
-// 		firstName: "Jacob",
-// 		lastName: "Mercer",
-// 		email: "j.mercer@mail.com",
-// 		friendCount: 40,
-// 	})
-// );
+//   class StringBuilder {
+// 	constructor (initialValue){
+// 	  this.value = initialValue;
+// 	};
+// 	getValue() {
+// 	  return this.value;
+// 	};
+// 	padEnd(str) {
+// 	  this.value = this.value.split(' ').push(str).join(' ')
+// 	};
+//   padStart(str) {
+// 	this.value = this.value.split(' ').swift(str).join(' ')
+//   };
+// 	padBoth(str) {
+// 	 this.value =  this.value.split(' ').swift(str).push(str).join(' ')
+// 	}
+//   }
+  
+  
 
-// console.log(
-// 	transformUsername({
-// 		id: 2,
-// 		firstName: "Adrian",
-// 		lastName: "Cross",
-// 		email: "a.cross@hotmail.com",
-// 		friendCount: 20,
-// 	})
-// );
+//   const builder = new StringBuilder(".");
+//   console.log(builder.getValue()); // "."
+//   builder.padStart("^");
+//   console.log(builder.getValue()); // "^."
+//   builder.padEnd("^");
+//   console.log(builder.getValue()); // "^.^"
+//   builder.padBoth("=");
+//   console.log(builder.getValue()); // "=^.^="
+  
 
-// console.log({
-// 	c: 4,
-// 	b: 2,
-// 	a: 1,
-// });
 
-// function foo(product, user, ...ids) {
-// 	const { name, price, mark, company } = product;
-// 	const { name: userName, age } = user;
-
-// 	console.log(name, mark, price);
-// 	console.log(company.name, company.code);
-// 	console.log(userName, age);
-// 	console.log(ids);
-// }
-
-// const product = {
-// 	name: "Pencil",
-// 	price: 2000,
-// 	mark: "AC/DC",
-// 	company: {
-// 		name: "HELLO",
-// 		code: 123213,
+// const historyService = {
+// 	orders: [
+// 	  { email: "jacob@hotmail.com", dish: "Burrito" },
+// 	  { email: "solomon@topmail.net", dish: "Burger" },
+// 	  { email: "artemis@coldmail.net", dish: "Pizza" },
+// 	  { email: "solomon@topmail.net", dish: "Apple pie" },
+// 	  { email: "jacob@hotmail.com", dish: "Taco" },
+// 	],
+// 	// Change code below this line
+// 	getOrdersLog() {
+// 	  return this.orders
+// 		.map(order => `email: ${order.email} dish: ${order.dish}`)
+// 		.join(" - ");
 // 	},
-// };
-
-// const user = {
-// 	name: "Veronica",
-// 	age: 18,
-// };
-
-// foo(product, user, "aowidhowugdwy", "awdwdw", "awdwdwddw");
+// 	getEmails() {
+// 	  const emails = this.orders.map(order => order.email);
+// 	  const uniqueEmails = new Set(emails);
+// 	  return [...uniqueEmails];
+// 	},
+// 	getOrdersByEmail(email) {
+// 	  return this.orders.filter(order => order.email === email);
+// 	},
+// 	// Change code above this line
+//   };
+  
+//   console.log(historyService.getOrdersByEmail("solomon@topmail.net"));
